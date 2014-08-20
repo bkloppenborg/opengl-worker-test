@@ -13,7 +13,6 @@ CGLWidget::CGLWidget ( QWidget * parent, const QGLWidget * shareWidget, Qt::Wind
 	: QGLWidget(parent, shareWidget, f)
 {
 	mFBO_render = NULL;
-
 }
 
 CGLWidget::~CGLWidget()
@@ -63,4 +62,6 @@ void CGLWidget::initializeGL()
     mFBO_render = new QGLFramebufferObject(this->size(), fbo_format);
 
 	CHECK_OPENGL_STATUS_ERROR(glGetError(), "Could not create mFBO_render");
+
+	setFixedSize(this->size());
 }
