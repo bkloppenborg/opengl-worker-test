@@ -11,13 +11,13 @@
 #include <QGLWidget>
 #include <QGLFramebufferObject>
 
+#include "CGLThread.h"
+
 class CGLWidget : public QGLWidget{
     Q_OBJECT
 
 protected:
-    float color;
-    QGLFramebufferObject * mFBO_render;
-
+    CGLThread * mGLThread;
 
 public:
 	CGLWidget ( QWidget * parent = 0, const QGLWidget * shareWidget = 0, Qt::WindowFlags f = 0 );
