@@ -14,6 +14,8 @@
 
 CGLThread::CGLThread(CGLWidget * glWidget) {
 	glw = glWidget;
+
+	mFBO_render = NULL;
 }
 
 CGLThread::~CGLThread() {
