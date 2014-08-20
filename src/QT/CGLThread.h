@@ -10,6 +10,9 @@
 
 #include <QThread>
 #include <QGLFramebufferObject>
+#include <memory>
+
+using namespace std;
 
 class CGLWidget;
 
@@ -17,7 +20,7 @@ class CGLThread : public QThread{
 private:
     CGLWidget * glw;
 
-    QGLFramebufferObject * mFBO_render;
+    unique_ptr<QGLFramebufferObject> mFBO_render;
 
 	bool doRendering;
 

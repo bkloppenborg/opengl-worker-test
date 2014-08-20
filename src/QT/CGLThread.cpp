@@ -15,11 +15,10 @@
 CGLThread::CGLThread(CGLWidget * glWidget) {
 	glw = glWidget;
 
-	mFBO_render = NULL;
 }
 
 CGLThread::~CGLThread() {
-	if(mFBO_render) delete mFBO_render;
+
 }
 
 
@@ -53,7 +52,7 @@ void CGLThread::run()
 
 		// blit the off-screen buffer to the default buffer
 		QRect region(0, 0, glw->size().width(), glw->size().height());
-		QGLFramebufferObject::blitFramebuffer (0, region, mFBO_render, region);
+		QGLFramebufferObject::blitFramebuffer (0, region, mFBO_render.get(), region);
 		CHECK_OPENGL_STATUS_ERROR(glGetError(), "blitFramebuffer failed");
 		glw->swapBuffers();
 
@@ -66,14 +65,12 @@ void CGLThread::run()
 // Any OpenGL creation routines
 void CGLThread::initializeGL()
 {
-	if(mFBO_render) delete mFBO_render;
-
     // Create an RGBA32F MAA buffer
     QGLFramebufferObjectFormat fbo_format = QGLFramebufferObjectFormat();
     fbo_format.setInternalTextureFormat(GL_RGBA32F);
     fbo_format.setTextureTarget(GL_TEXTURE_2D);
 
-    mFBO_render = new QGLFramebufferObject(glw->size(), fbo_format);
+    mFBO_render.reset(new QGLFramebufferObject(glw->size(), fbo_format));
 
 	CHECK_OPENGL_STATUS_ERROR(glGetError(), "Could not create mFBO_render");
 }
