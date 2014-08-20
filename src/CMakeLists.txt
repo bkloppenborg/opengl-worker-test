@@ -13,4 +13,4 @@ file(GLOB SOURCE *.cpp)
 # Now add the binary
 add_executable(worker-test ${SOURCE})
 
-target_link_libraries(worker-test QT_files ${QT_LIBRARIES} ${OPENGL_LIBRARIES})
+target_link_libraries(worker-test ${QT_LIBRARIES} ${OPENGL_LIBRARIES})
