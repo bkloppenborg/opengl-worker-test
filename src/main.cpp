@@ -40,7 +40,7 @@
 #endif // Q_WS_X11
 
 #include "main.h"
-//#include "qmain.h"
+#include "gui_main.h"
 
 int main(int argc, char* argv[])
 {
@@ -66,8 +66,8 @@ int main(int argc, char* argv[])
 	QGLFormat::setDefaultFormat(fmt);
 
     // Startup the GUI:
-//    gui_main main_window;
-//    main_window.show();
+	gui_main main_window;
+    main_window.show();
 
     return app.exec();
 }
