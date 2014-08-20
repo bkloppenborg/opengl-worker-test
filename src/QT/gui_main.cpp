@@ -25,6 +25,9 @@
  
 #include "gui_main.h"
 
+#include <QtOpenGL/QGLWidget>
+#include <QPushButton>
+
 gui_main::gui_main(QWidget *parent_widget)
     : QMainWindow(parent_widget)
 {
@@ -35,4 +38,9 @@ gui_main::gui_main(QWidget *parent_widget)
 gui_main::~gui_main()
 {
 	close();
+}
+
+void gui_main::on_btnRender_clicked(void)
+{
+	this->GLWidget->updateGL();
 }

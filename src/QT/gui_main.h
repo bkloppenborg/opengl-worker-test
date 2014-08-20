@@ -37,6 +37,10 @@ class gui_main : public QMainWindow, private Ui::qt_main
 public:
     gui_main(QWidget *parent = 0);
     virtual ~gui_main();
+
+public slots:
+	void on_btnRender_clicked(void);
+
 };
 
 #endif // CMAINGUI_H
